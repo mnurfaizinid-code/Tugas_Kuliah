@@ -13,14 +13,14 @@
       let elemenHasil = document.getElementById("hasil");
 
       if (tahunLahirInput === "") {
-        elemenHasil.innerHTML = "Tahun lahir tidak boleh kosong!";
+        elemenHasil.innerHTML = "Harap masukkan tahun lahir!";
         return;
       }
 
       let tahunLahir = Number(tahunLahirInput);
 
       if (tahunLahir > tahunSekarang) {
-        elemenHasil.innerHTML = "Tahun lahir tidak boleh lebih besar dari tahun sekarang!";
+        elemenHasil.innerHTML = "Sekarang masih 2026 mas, yang bener aja";
         return;
       }
 
