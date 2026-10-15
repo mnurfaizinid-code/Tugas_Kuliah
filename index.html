@@ -1,0 +1,31 @@
+<body>
+  <h2>Mari hitung umur anda</h2>
+  <label for="tahun">Masukkan Tahun Lahir:</label>
+  <input type="number" id="tahun" placeholder="contoh: 2000">
+  <button onclick="hitungUmur()">Hitung</button>
+
+  <p id="hasil"></p>
+
+  <script>
+    function hitungUmur() {
+      let tahunLahirInput = document.getElementById("tahun").value;
+      let tahunSekarang = new Date().getFullYear();
+      let elemenHasil = document.getElementById("hasil");
+
+      if (tahunLahirInput === "") {
+        elemenHasil.innerHTML = "Tahun lahir tidak boleh kosong!";
+        return;
+      }
+
+      let tahunLahir = Number(tahunLahirInput);
+
+      if (tahunLahir > tahunSekarang) {
+        elemenHasil.innerHTML = "Tahun lahir tidak boleh lebih besar dari tahun sekarang!";
+        return;
+      }
+
+      let umur = tahunSekarang - tahunLahir;
+      elemenHasil.innerHTML = "Umur kamu sekarang adalah " + umur + " tahun.";
+    }
+  </script>
+</body>
