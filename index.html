@@ -1,10 +1,27 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tugas Tambahan JavaScript</title>
+</head>
 <body>
-  <h2>Mari hitung umur anda</h2>
+
+  <h2>Masukkan umurmu dan hadapilah kenyataan</h2>
   <label for="tahun">Masukkan Tahun Lahir:</label>
   <input type="number" id="tahun" placeholder="contoh: 2000">
   <button onclick="hitungUmur()">Hitung</button>
 
   <p id="hasil"></p>
+
+  <hr>
+
+  <h2>Masukkan nilaimu dan hadapilah kenyataan</h2>
+  <label for="nilai">Masukkan Nilai (0 - 100):</label>
+  <input type="number" id="nilai" placeholder="contoh: 85">
+  <button onclick="cekNilai()">Cek Nilai</button>
+
+  <p id="hasilNilai"></p>
 
   <script>
     function hitungUmur() {
@@ -20,12 +37,69 @@
       let tahunLahir = Number(tahunLahirInput);
 
       if (tahunLahir > tahunSekarang) {
-        elemenHasil.innerHTML = "Sekarang masih 2026 mas, yang bener aja";
+        elemenHasil.innerHTML = "Sekarang masih " + tahunSekarang + " mas, yang bener aja";
         return;
       }
 
       let umur = tahunSekarang - tahunLahir;
-      elemenHasil.innerHTML = "Umur kamu sekarang adalah " + umur + " tahun.";
+
+      if (umur > 30) {
+        elemenHasil.innerHTML = "Umur kamu " + umur + " , Fosil mas?.";
+        return;
+      }
+
+      let isKabisat = (tahunLahir % 4 === 0 && tahunLahir % 100 !== 0) || (tahunLahir % 400 === 0);
+      let teksKabisat = isKabisat ? "Tahun lahir kamu adalah Tahun Kabisat." : "Tahun lahir kamu Bukan Tahun Kabisat.";
+
+      elemenHasil.innerHTML = "Umur kamu sekarang adalah " + umur + " tahun.<br>" + teksKabisat;
+    }
+
+    function cekNilai() {
+      let nilaiInput = document.getElementById("nilai").value;
+      let elemenHasilNilai = document.getElementById("hasilNilai");
+
+      if (nilaiInput === "" || Number(nilaiInput) < 0 || Number(nilaiInput) > 100) {
+        elemenHasilNilai.innerHTML = "Masukkan nilai antara 0 sampai 100!";
+        return;
+      }
+
+      let nilai = Number(nilaiInput);
+      let nilaiHuruf = "";
+
+      if (nilai >= 90) {
+        nilaiHuruf = "A";
+      } else if (nilai >= 80) {
+        nilaiHuruf = "B";
+      } else if (nilai >= 70) {
+        nilaiHuruf = "C";}
+        else if (nilai === 0) 
+        {nilaiHuruf = "Z"}
+       else {
+        nilaiHuruf = "D";
+      }
+
+      let keterangan = "";
+      switch (nilaiHuruf) {
+        case "A":
+          keterangan = "Albert Einstein aja kalah sama lu";
+          break;
+        case "B":
+          keterangan = "Bisa lebih harusnya";
+          break;
+        case "C":
+          keterangan = "Boleh lah";
+          break;
+        case "D":
+          keterangan = "Ngawor banget rek";
+          break;
+        case "Z":
+          keterangan = "Yang bener aja mas";
+          break;
+      }
+
+      elemenHasilNilai.innerHTML = "Nilai kamu: <b>" + nilaiHuruf + "</b> (" + keterangan + ")";
     }
   </script>
+
 </body>
+</html>
